@@ -14,12 +14,18 @@ pipeline {
             }
         }
         stage('Deploy to preprod') {
+            environment {
+                ANSIBLE_HOST_KEY_CHECKING = 'false'
+            }
             steps {
                 sh 'echo Deploying...'
                 ansiblePlaybook credentialsId: 'mykey', inventory: 'hosts.ini', playbook: 'playbook.yml'
             }
         }
         stage('Deploy to staging') {
+            environment {
+                ANSIBLE_HOST_KEY_CHECKING = 'false'
+            }
             steps {
                 sh 'echo Deploying...'
                 ansiblePlaybook credentialsId: 'mykey', inventory: 'target.ini', playbook: 'playbook.yml'
