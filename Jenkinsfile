@@ -17,7 +17,8 @@ pipeline {
            steps {
                withCredentials([file(credentialsId:'kubernetis-config', variable:'kubeconfig')]){
                    sh 'cp $kubeconfig ~/.kube/config'
-                   sh 'kubectl apply -f deployment.yaml --validate=false'
+                   sh 'kubectl get all'
+                   // sh 'kubectl apply -f deployment.yaml'
                }
            }
        }
