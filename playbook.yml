@@ -10,7 +10,7 @@
     - name: Create the deployment folder
       file:
         dest: /home/vagrant.linux
-        status: directory
+        state: directory
         
     - name: Copy Artifact
       copy:
