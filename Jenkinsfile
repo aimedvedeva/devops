@@ -14,6 +14,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment {
+                ANSIBLE_HOST_KEY_CHECKING = 'false'
+            }
             steps {
                 sh 'echo Deploying...'
                 ansiblePlaybook credentialsId: 'mykey', inventory: 'hosts.ini', playbook: 'playbook.yml'
