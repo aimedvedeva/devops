@@ -3,8 +3,8 @@
     - name: Enable and start the service
       ansible.builtin.systemd_service:
         name: myapp
-        state: stopped # systemctl daemon-reload
-      become: true # use sudo
+        state: stopped 
+      become: true
 
     - name: Copy Artifact
       copy:
