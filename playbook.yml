@@ -1,0 +1,7 @@
+- hosts: app
+  tasks: 
+    - name: Copy Service Definition
+      copy:
+        src: myapp.service
+        dest: /etc/systemd/system/myapp.service
+      become: true # use sudo 
