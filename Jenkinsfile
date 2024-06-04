@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                 sh 'echo Deploying...'
-                ansiblePlaybook credentialsId: 'mykey', inventory: 'hosts.ini', playbook: 'playbook.yml'
+                ansiblePlaybook credentialsId: 'myinstance', inventory: 'hosts.ini', playbook: 'playbook.yml'
             }
         }
         stage('Deploy to staging') {
