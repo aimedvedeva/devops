@@ -11,7 +11,7 @@
       file:
         path: /home/vagrant.linux
         state: directory
-        chmod: 777
+        mod: 777
       become: True
         
     - name: Copy Artifact
