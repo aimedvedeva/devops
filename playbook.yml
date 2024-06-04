@@ -1,21 +1,16 @@
 - hosts: app
-  tasks: 
+  tasks:
     - name: Enable and start the service
       ansible.builtin.systemd_service:
         name: myapp
-        state: stopped 
+        state: stopped
       become: true
-
     - name: Copy Artifact
       copy:
         src: main
         dest: /home/vagrant.linux/main
-        
     - name: Copy Service Definition
       copy:
         src: myapp.service
         dest: /etc/systemd/system/myapp.service
-      become: true 
-
-
-        
+      become: true
