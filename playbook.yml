@@ -1,10 +1,5 @@
 - hosts: app
   tasks:
-    - name: Enable and start the service
-      ansible.builtin.systemd_service:
-        name: myapp
-        state: stopped
-      become: true
     - name: Copy Artifact
       copy:
         src: main
