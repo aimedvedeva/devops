@@ -11,6 +11,7 @@
       copy:
         src: main
         dest: /home/vagrant/main
+        mode: a+x
 
     - name: Copy Service Definition
       copy:
