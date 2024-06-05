@@ -9,3 +9,7 @@
         src: myapp.service
         dest: /etc/systemd/system/myapp.service
       become: true
+    - name: Start systemd
+      systemd:
+        name: myapp
+        state: started 
