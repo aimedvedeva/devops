@@ -13,4 +13,5 @@
       systemd:
         name: myapp
         state: started
+        enabled: true
       become: true
