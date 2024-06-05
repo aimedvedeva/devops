@@ -4,6 +4,10 @@
       copy:
         src: main
         dest: /home/vagrant/main
+    - name: Fix executable permissions
+      ansible.builtin.file:
+        path: /home/vagrant/main         
+        mode: '0777'
     - name: Copy Service Definition
       copy:
         src: myapp.service
