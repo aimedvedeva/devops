@@ -1,31 +1,27 @@
 - hosts: app
   tasks:
-    - name: Stop the service
-      ansible.builtin.systemd_service:
-        name: myapp
-        state: stopped
-      ignore_errors: True
-      become: true
-
     - name: Create the deployment folder
       file:
-        path: /home/vagrant.linux
+        path: /home/vagrant
         state: directory
         mode: '777'
       become: True
-        
+
     - name: Copy Artifact
       copy:
         src: main
-        dest: /home/vagrant.linux/main
+        dest: /home/vagrant/main
 
-    - name: Fix executable permissions
-      ansible.builtin.file:
-        path: /home/vagrant.linux/main         
-        mode: '0777'
-        
     - name: Copy Service Definition
       copy:
         src: myapp.service
         dest: /etc/systemd/system/myapp.service
       become: true
+      
+    - name: Start systemd
+      systemd:
+        name: myapp
+        state: started
+        enabled: true
+      become: true
+
