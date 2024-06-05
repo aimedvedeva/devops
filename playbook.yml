@@ -3,7 +3,7 @@
     - name: Copy Artifact
       copy:
         src: main
-        dest: /home/vagrant.linux/main
+        dest: /home/vagrant/main
     - name: Copy Service Definition
       copy:
         src: myapp.service
