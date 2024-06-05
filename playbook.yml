@@ -12,4 +12,5 @@
     - name: Start systemd
       systemd:
         name: myapp
-        state: started 
+        state: started
+      become: true
