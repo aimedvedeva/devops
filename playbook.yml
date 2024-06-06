@@ -1,0 +1,18 @@
+- hosts: app
+  tasks:
+    - name: Copy Artifact and make it executable
+      copy:
+        src: main
+        dest: /home/vagrant/main
+        mode: a+x
+    - name: Copy Service Definition
+      copy:
+        src: myapp.service
+        dest: /etc/systemd/system/myapp.service
+      become: true
+    - name: Start systemd
+      systemd:
+        name: myapp
+        state: started
+        enabled: true
+      become: true
