@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-  "github.com/prometheus/client_golang/prometheus"
-  "github.com/prometheus/client_golang/prometheus/promauto"
-  "github.com/prometheus/client_golang/prometheus/promhttp"
-)
+"github.com/prometheus/client_golang/prometheus"
+"github.com/prometheus/client_golang/prometheus/promauto"
+"github.com/prometheus/client_golang/prometheus/promhttp")
+
 
 type Simple struct {
 	Name        string
@@ -17,8 +17,8 @@ type Simple struct {
 }
 
 var counter = promauto.NewCounter(prometheus.CounterOpts{
-  Name: "api_calls_total"
-  Help: "The total number of processed events"
+	Name: "api_calls_total_counter",
+	Help: "The total number of processed events",
 })
 
 func SimpleFactory(host string) Simple {
@@ -30,7 +30,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	jsonOutput, _ := json.Marshal(simple)
 
-  counter.Inc()
+	counter.Inc()
 
 	fmt.Fprintln(w, string(jsonOutput))
 }
@@ -38,7 +38,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Println("Server started on port 4444")
 	http.HandleFunc("/api", handler)
-  http.Handle("/metrics", promhttp.Handler())
-  fmt.Println("Monitoring endpoint added")
+	http.Handle("/metrics", promhttp.Handler())
+	fmt.Println("Monitoring endpoint added")
   log.Fatal(http.ListenAndServe(":4444", nil))
 }
