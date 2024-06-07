@@ -2,9 +2,9 @@ name: NodeJS with Grunt
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main"]
 
 jobs:
   build:
@@ -53,4 +53,6 @@ jobs:
             echo "$SUPER_SECRET" > ~/.ssh/id_rsa_github
             chmod 600 ~/.ssh/id_rsa_github
             ansible-playbook --key-file ~/.ssh/id_rsa_github -i production.ini playbook.yml
+
+      
 
