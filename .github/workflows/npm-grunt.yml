@@ -54,7 +54,7 @@ jobs:
           run: |
             echo "$SUPER_SECRET" > ~/.ssh/id_rsa_github
             chmod 600 ~/.ssh/id_rsa_github
-            ansible-playbook --key-file ~/.ssh/id_rsa_github -i production.ini playbook.yml
+            ansible-playbook --key-file ~/.ssh/id_rsa_github -i production.ini playbook_prod.yml
 
       
 
