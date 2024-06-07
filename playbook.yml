@@ -1,0 +1,30 @@
+---
+- name: Deploy Docker container
+  hosts: all
+  become: true
+  tasks:
+    - name: Pull Docker image
+      docker_image:
+        name: "ttl.sh/myapp1"
+        source: pull
+
+    - name: Stop existing container (if running)
+      docker_container:
+        name: myapp1
+        state: stopped
+      ignore_errors: yes
+
+    - name: Remove existing container (if exists)
+      docker_container:
+        name: myapp1
+        state: absent
+      ignore_errors: yes
+
+    - name: Run Docker container
+      docker_container:
+        name: myapp1
+        image: "ttl.sh/myapp1"
+        state: started
+        ports:
+          - "8080:4444"
+        restart_policy: always
