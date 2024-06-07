@@ -35,6 +35,7 @@ jobs:
     steps:
       - shell: bash
         env:
+          ANSIBLE_HOST_KEY_CHECKING: 'false'
           SUPER_SECRET: ${{secrets.SSH_KEY}}
         run: |
           echo "$SUPER_SECRET" > ~/.ssh/id_rsa_github
@@ -48,11 +49,9 @@ jobs:
       steps:
         - shell: bash
           env:
+            ANSIBLE_HOST_KEY_CHECKING: 'false'
             SUPER_SECRET: ${{secrets.SSH_KEY}}
           run: |
             echo "$SUPER_SECRET" > ~/.ssh/id_rsa_github
             chmod 600 ~/.ssh/id_rsa_github
             ansible-playbook --key-file ~/.ssh/id_rsa_github -i production.ini playbook.yml
-
-      
-
