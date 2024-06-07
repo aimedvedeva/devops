@@ -28,3 +28,15 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push ttl.sh/myapp1
+
+  deploy-staging:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - shell: bash
+        env:
+          SUPER_SECRET: ${{secrets.SSH_KEY}}
+        run: |
+          echo "$SUPER_SECRET" > ~/.ssh/id_rsa_github
+          chmod 600 ~/.ssh/id_rsa_github
+          ansible-playbook --key-file ~/.ssh/id_rsa_github -i staging.ini playbook.yml
