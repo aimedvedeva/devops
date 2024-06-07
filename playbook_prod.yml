@@ -5,6 +5,7 @@
       community.docker.docker_image:
         name: "ttl.sh/myapp1"
         source: pull
+      become: True
 
     - name: Stop existing container (if running)
       docker_container:
